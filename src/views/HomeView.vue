@@ -1,11 +1,12 @@
 <script setup lang="ts">
 import { RouterLink } from 'vue-router'
+import ImgUser from '@/components/icons/ImgUser.vue'
 </script>
 
 <template>
   <header>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-      <div class="container">
+      <div class="container-fluid">
         <RouterLink class="navbar-brand" to="/"> CRUDSnap </RouterLink>
         <ul class="navbar-nav">
           <li class="nav-item">
@@ -19,9 +20,12 @@ import { RouterLink } from 'vue-router'
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
               data-bs-toggle="dropdown" aria-expanded="false">
-              Perfil
+              <ImgUser />
             </a>
             <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+              <li>
+                <RouterLink class="dropdown-item" to="/account"> Conta </RouterLink>
+              </li>
               <li>
                 <RouterLink class="dropdown-item" to="/exit"> Sair </RouterLink>
               </li>
