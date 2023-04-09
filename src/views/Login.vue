@@ -1,18 +1,28 @@
 <script setup lang="ts">
 import { RouterLink } from 'vue-router'
+import { ref } from 'vue';
+
+const email = ref('');
+const password = ref('');
+
+function login() {
+    console.log(email.value)
+    console.log(password.value)
+}
 
 </script>
 
 <template>
     <div class="container">
-        <form class="row">
+        <form class="row" @submit.prevent="login">
             <div class="offset-4 col-4 mb-3">
                 <label for="exampleInputEmail1" class="form-label">Email:</label>
-                <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                <input v-model="email" type="email" class="form-control" id="exampleInputEmail1"
+                    aria-describedby="emailHelp">
             </div>
             <div class="offset-4 col-4 mb-3">
                 <label for="exampleInputPassword1" class="form-label">Senha:</label>
-                <input type="password" class="form-control" id="exampleInputPassword1">
+                <input v-model="password" type="password" class="form-control" id="exampleInputPassword1">
             </div>
             <div class="offset-4 col-4 mb-3 px-4 form-check">
                 <input type="checkbox" class="form-check-input" id="exampleCheck1">
