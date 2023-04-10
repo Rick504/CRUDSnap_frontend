@@ -8,12 +8,15 @@ const router = useRouter();
 
 const email = ref('');
 const password = ref('');
+const loginError = ref(false)
 
 async function login() {
-    const loginOk = await loginService(email.value, password.value)
-    if (loginOk) {
-        router.push('/')
+    const login = await loginService(email.value, password.value)
+    if (!login) {
+        loginError.value = true
+        return
     }
+    router.push('/')
 }
 
 </script>
@@ -29,6 +32,7 @@ async function login() {
             <div class="offset-4 col-4 mb-3">
                 <label for="exampleInputPassword1" class="form-label">Senha:</label>
                 <input v-model="password" type="password" class="form-control" id="exampleInputPassword1">
+                <span v-if="loginError" id="loginError">Usuário ou senha inválidos.</span>
             </div>
             <div class="offset-4 col-4 mb-3 px-4 form-check">
                 <input type="checkbox" class="form-check-input" id="exampleCheck1">
@@ -49,5 +53,9 @@ async function login() {
 <style scoped>
 form {
     margin-top: 15%;
+}
+
+#loginError {
+    color: red;
 }
 </style>
