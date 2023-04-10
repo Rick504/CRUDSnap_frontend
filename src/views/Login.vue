@@ -22,7 +22,8 @@ async function login() {
 </script>
 
 <template>
-    <div class="container">
+    <div class="container border border-1 p-5 mt-4">
+        <div class="h2 text-center">Login</div>
         <form class="row" @submit.prevent="login">
             <div class="offset-4 col-4 mb-3">
                 <label for="exampleInputEmail1" class="form-label">Email:</label>
@@ -47,6 +48,11 @@ async function login() {
                 </button>
             </div>
         </form>
+        <div class="row">
+            <div class=" text-center mt-5">
+                <RouterLink class="btn btn-primary" to="/register"> Criar uma nova conta</RouterLink>
+            </div>
+        </div>
     </div>
 </template>
 
