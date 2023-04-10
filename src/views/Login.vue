@@ -2,12 +2,18 @@
 import { RouterLink } from 'vue-router'
 import { ref } from 'vue';
 import { loginService } from '@/services/login.service'
+import { useRouter } from 'vue-router';
+
+const router = useRouter();
 
 const email = ref('');
 const password = ref('');
 
 async function login() {
-    await loginService(email.value, password.value)
+    const loginOk = await loginService(email.value, password.value)
+    if (loginOk) {
+        router.push('/')
+    }
 }
 
 </script>

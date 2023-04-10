@@ -27,7 +27,7 @@ import ImgUser from '@/components/icons/ImgUser.vue'
                 <RouterLink class="dropdown-item" to="/account"> Conta </RouterLink>
               </li>
               <li>
-                <RouterLink class="dropdown-item" to="/exit"> Sair </RouterLink>
+                <RouterLink class="dropdown-item" to="/login"> Sair </RouterLink>
               </li>
             </ul>
           </li>
