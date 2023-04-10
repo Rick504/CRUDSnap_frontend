@@ -1,13 +1,13 @@
 <script setup lang="ts">
 import { RouterLink } from 'vue-router'
 import { ref } from 'vue';
+import { loginService } from '@/services/login.service'
 
 const email = ref('');
 const password = ref('');
 
-function login() {
-    console.log(email.value)
-    console.log(password.value)
+async function login() {
+    await loginService(email.value, password.value)
 }
 
 </script>
