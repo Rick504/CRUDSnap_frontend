@@ -20,14 +20,6 @@ const router = createRouter({
         public: true,
       },
     },
-    {
-      path: '/register',
-      name: 'register',
-      component: () => import('../views/Register.vue'),
-      meta: {
-        public: true,
-      },
-    },
   ],
 });
 

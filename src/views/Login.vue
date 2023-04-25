@@ -10,6 +10,10 @@ const email = ref('');
 const password = ref('');
 const loginError = ref(false)
 
+function register() {
+    console.log('registrar user')
+}
+
 async function login() {
     const login = await loginService(email.value, password.value)
     if (!login) {
@@ -22,46 +26,79 @@ async function login() {
 </script>
 
 <template>
-    <div class="container border border-1 p-5 mt-4">
-        <div class="h2 text-center">Login</div>
-        <form class="row" @submit.prevent="login">
-            <div class="offset-4 col-4 mb-3">
-                <label for="exampleInputEmail1" class="form-label">Email:</label>
-                <input v-model="email" type="email" class="form-control" id="exampleInputEmail1"
-                    aria-describedby="emailHelp">
+    <div id="containerFormLogin" class="container border border-2 rounded-4">
+        <form id="formLogin" @submit.prevent="login">
+            <div class="row mx-3 d-flex">
+                <div class="col-4">
+                    <label for="inputEmail" class="form-label">E-mail:</label>
+                    <input v-model="email" type="email" class="form-control" id="inputEmail" aria-describedby="emailHelp">
+                    <span v-if="loginError" id="loginError">Usuário ou senha inválidos.</span>
+                </div>
+                <div class="col-4">
+                    <label for="inputPassword1" class="form-label">Senha:</label>
+                    <input v-model="password" type="password" class="form-control" id="inputPassword1">
+                </div>
+                <div class="col-1">
+                    <button id="btn-login" type="submit" class="btn btn-success">
+                        <span class="m-5">
+                            Login
+                        </span>
+                    </button>
+                </div>
             </div>
-            <div class="offset-4 col-4 mb-3">
-                <label for="exampleInputPassword1" class="form-label">Senha:</label>
-                <input v-model="password" type="password" class="form-control" id="exampleInputPassword1">
-                <span v-if="loginError" id="loginError">Usuário ou senha inválidos.</span>
-            </div>
-            <div class="offset-4 col-4 mb-3 px-4 form-check">
-                <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                <label class="form-check-label" for="exampleCheck1"> Lembre-me </label> |
-                <RouterLink to="/ForgotPassword"> Esqueceu a sua senha? </RouterLink>
-            </div>
-            <div class="offset-4 col-4 d-flex justify-content-end">
-                <button type="submit" class="btn btn-success">
-                    <span class="m-3">
-                        Entrar
-                    </span>
-                </button>
+            <div class="row">
+                <div class="col-12 mt-3 mx-4 mb-2">
+                    <input type="checkbox" class="form-check-input mx-2" id="passwordCheck">
+                    <label class="form-check-label" for="passwordCheck"> Lembre-me </label> |
+                    <RouterLink to="/ForgotPassword"> Esqueceu a sua senha? </RouterLink>
+                </div>
             </div>
         </form>
-        <div class="row">
-            <div class=" text-center mt-5">
-                <RouterLink class="btn btn-primary" to="/register"> Criar uma nova conta</RouterLink>
+    </div>
+    <div class="container">
+        <div class="row mt-5">
+            <div class="offset-4 col-4 text-center border border-2 rounded-4 p-4">
+                <div>Não tem uma conta? </div>
+                <div class="h2">Cadastre-se</div>
+                <form @submit.prevent="register">
+                    <div class="mt-5">
+                        <label for="inputUserName">Insira seu e-mail de usuário</label>
+                        <input class="form-control" type="text" name="userName" id="inputUserName">
+                    </div>
+                    <div class="mt-3">
+                        <label for="registerPassword">Escolha sua senha</label>
+                        <input class="form-control" type="text" name="userName" id="registerPassword">
+                    </div>
+                    <div class="mt-3">
+                        <input type="checkbox" class="form-check-input" id="termCheck">
+                        Aceito os
+                        <a href="#">Termos e Condições.</a> <br>
+                        Você pode encontrar a nossa Política de Privacidade <a href="#">aqui</a>.
+                    </div>
+                    <div class="mt-5 mb-5">
+                        <button type="submit" class="btn btn-success">
+                            <span class="m-3">
+                                Cadastrar
+                            </span>
+                        </button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
 </template>
 
 <style scoped>
-form {
-    margin-top: 15%;
-}
-
 #loginError {
     color: red;
+}
+
+#containerFormLogin {
+    margin-left: 40rem;
+    width: 44rem;
+}
+
+#btn-login {
+    margin-top: 2rem;
 }
 </style>
