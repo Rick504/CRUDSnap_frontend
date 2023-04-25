@@ -12,6 +12,7 @@ const registerEmail = ref('');
 const registerUserName = ref('');
 const registerPassword = ref('');
 const password = ref('');
+const terms = ref(true);
 const loginError = ref(false)
 const registerError = ref(false)
 
@@ -94,13 +95,13 @@ async function login() {
                         <span v-if="registerError" id="loginError">Erro ao cadastrar usuário.</span>
                     </div>
                     <div class="mt-3">
-                        <input type="checkbox" class="form-check-input" id="termCheck">
+                        <input v-model="terms" type="checkbox" class="form-check-input" id="termCheck">
                         Aceito os
                         <a href="#">Termos e Condições.</a> <br>
                         Você pode encontrar a nossa Política de Privacidade <a href="#">aqui</a>.
                     </div>
                     <div class="mt-5 mb-5">
-                        <button type="submit" class="btn btn-success">
+                        <button :disabled="!terms" type="submit" class="btn btn-success">
                             <span class="m-3">
                                 Cadastrar
                             </span>
