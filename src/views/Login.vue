@@ -7,14 +7,15 @@ import { useRouter } from 'vue-router';
 
 const router = useRouter();
 
-const email = ref('');
-const registerEmail = ref('');
-const registerUserName = ref('');
-const registerPassword = ref('');
-const password = ref('');
-const terms = ref(true);
-const loginError = ref(false)
-const registerError = ref(false)
+const email = ref<string>('');
+const registerEmail = ref<string>('');
+const registerUserName = ref<string>('');
+const registerPassword = ref<string>('');
+const password = ref<string>('');
+const terms = ref<boolean>(false);
+const loginError = ref<boolean>(false)
+const registerError = ref<boolean>(false)
+const rememberMe = ref<boolean>(true)
 
 async function register() {
     // console.log('send register user::', registerEmail.value, registerPassword.value)
@@ -35,6 +36,7 @@ async function login() {
     }
     router.push('/')
 }
+
 
 </script>
 
@@ -63,7 +65,7 @@ async function login() {
             </div>
             <div class="row">
                 <div class="col-12 mt-3 mx-4 mb-2">
-                    <input type="checkbox" class="form-check-input mx-2" id="passwordCheck">
+                    <input v-model="rememberMe" type="checkbox" class="form-check-input mx-2" id="passwordCheck">
                     <label class="form-check-label" for="passwordCheck"> Lembre-me </label> |
                     <RouterLink to="/ForgotPassword"> Esqueceu a sua senha? </RouterLink>
                 </div>
