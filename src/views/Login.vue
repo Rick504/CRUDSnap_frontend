@@ -41,7 +41,7 @@ async function login() {
 </script>
 
 <template>
-    <div id="containerFormLogin" class="container border border-2 rounded-4">
+    <div id="containerFormLogin" class="container rounded-3 bg-dark text-white">
         <form id="formLogin" @submit.prevent="login">
             <div class="row mx-3 d-flex">
                 <div class="col-4">
@@ -73,8 +73,8 @@ async function login() {
         </form>
     </div>
     <div class="container">
-        <div class="row mt-5">
-            <div class="offset-4 col-4 text-center border border-2 rounded-4 p-4">
+        <div class="row mt-4">
+            <div class="offset-4 col-4 text-center rounded-4 p-4 bg-dark text-white">
                 <div>Não tem uma conta? </div>
                 <div class="h2">Cadastre-se</div>
                 <form @submit.prevent="register">
@@ -121,7 +121,7 @@ async function login() {
 }
 
 #containerFormLogin {
-    margin-left: 40rem;
+    margin-left: 38rem;
     width: 44rem;
 }
 
