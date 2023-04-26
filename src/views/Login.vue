@@ -15,10 +15,9 @@ const password = ref<string>('');
 const terms = ref<boolean>(false);
 const loginError = ref<boolean>(false)
 const registerError = ref<boolean>(false)
-const rememberMe = ref<boolean>(true)
+// const rememberMe = ref<boolean>(false)
 
 async function register() {
-    // console.log('send register user::', registerEmail.value, registerPassword.value)
     const register = await registerService(registerUserName.value, registerEmail.value, registerPassword.value)
     if (!register) {
         registerError.value = true
@@ -28,12 +27,14 @@ async function register() {
 }
 
 async function login() {
-    // console.log('send login::', email.value, password.value)
     const login = await loginService(email.value, password.value)
+
     if (!login) {
         loginError.value = true
         return
     }
+
+    sessionStorage.setItem('TOKEN', login.token)
     router.push('/')
 }
 
@@ -46,11 +47,13 @@ async function login() {
             <div class="row mx-3 d-flex">
                 <div class="col-4">
                     <label for="inputEmail" class="form-label">E-mail:</label>
-                    <input v-model="email" type="email" class="form-control" id="inputEmail" aria-describedby="emailHelp">
+                    <input v-model="email" placeholder="Seu e-mail" class="form-control" type="email" id="email"
+                        name="email" aria-describedby="emailHelp" required>
                 </div>
                 <div class="col-4">
-                    <label for="inputPassword1" class="form-label">Senha:</label>
-                    <input v-model="password" type="password" class="form-control" id="inputPassword1">
+                    <label for="password" class="form-label">Senha:</label>
+                    <input v-model="password" placeholder="Senha" name="password" type="password" class="form-control"
+                        id="password" autocomplete="off" required>
                 </div>
                 <div class="col-1">
                     <button id="btn-login" type="submit" class="btn btn-success">
@@ -65,9 +68,11 @@ async function login() {
             </div>
             <div class="row">
                 <div class="col-12 mt-3 mx-4 mb-2">
-                    <input v-model="rememberMe" type="checkbox" class="form-check-input mx-2" id="passwordCheck">
-                    <label class="form-check-label" for="passwordCheck"> Lembre-me </label> |
-                    <RouterLink to="/ForgotPassword"> Esqueceu a sua senha? </RouterLink>
+                    <label for="login_remember_me" class="checkbox-label">
+                        <input type="checkbox" id="remember_me" name="remember_me" value="1" class="checkbox">
+                        Lembre-Me
+                    </label> |
+                    <RouterLink class="forgot-password-link" to="/ForgotPassword"> Esqueceu a sua senha? </RouterLink>
                 </div>
             </div>
         </form>
@@ -81,17 +86,17 @@ async function login() {
                     <div class="mt-5">
                         <label for="inputUserNameRegister">Escolha seu nome de usuário</label>
                         <input v-model="registerUserName" class="form-control" type="text" name="userName"
-                            id="inputUserNameRegister">
+                            id="inputUserNameRegister" placeholder="Escolha seu nome">
                     </div>
                     <div class="mt-3">
                         <label for="inputEmailRegister">Insira seu e-mail de usuário</label>
                         <input v-model="registerEmail" class="form-control" type="text" name="userName"
-                            id="inputEmailRegister">
+                            id="inputEmailRegister" placeholder="Escolha seu e-mail">
                     </div>
                     <div class="mt-3">
                         <label for="inputPasswordRegister">Escolha sua senha</label>
                         <input v-model="registerPassword" class="form-control" type="password" name="userName"
-                            id="inputPasswordRegister">
+                            id="inputPasswordRegister" placeholder="Escolha sua senha">
                     </div>
                     <div class="row mx-3">
                         <span v-if="registerError" id="loginError">Erro ao cadastrar usuário.</span>
