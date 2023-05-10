@@ -34,7 +34,7 @@ async function login() {
         return
     }
 
-    useUserStore.userInfo = login
+    useUserStore.authLogin = login.auth
     sessionStorage.setItem('token', login.token)
     router.push('/')
 }

@@ -2,9 +2,9 @@ import { ref, computed } from 'vue';
 import { defineStore } from 'pinia';
 
 export const useUserStore: any = defineStore('user', () => {
-  const userInfo = ref(null);
+  const authLogin = ref(null);
 
-  return { userInfo };
+  return { authLogin };
 });
 
 // export const useCounterStore = defineStore('counter', () => {
