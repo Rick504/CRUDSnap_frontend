@@ -4,6 +4,7 @@ import { ref } from 'vue';
 import { loginService } from '@/services/login.service'
 import { registerService } from '@/services/register.service'
 import { useRouter } from 'vue-router';
+import { useUserStore } from '@/stores/user'
 
 const router = useRouter();
 
@@ -28,12 +29,12 @@ async function register() {
 
 async function login() {
     const login = await loginService(email.value, password.value)
-
     if (!login) {
         loginError.value = true
         return
     }
 
+    useUserStore.userInfo = login
     sessionStorage.setItem('TOKEN', login.token)
     router.push('/')
 }

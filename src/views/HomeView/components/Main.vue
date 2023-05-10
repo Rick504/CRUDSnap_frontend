@@ -1,9 +1,11 @@
+<script setup lang="ts">
+import {useUserStore} from '@/stores/user'
+</script>
+
 <template>
     <main class="bg-dark text-white">
-        <div class="text-center border border-secondary rounded-2">
-            <div>
-                Main
-            </div>
+        <div class="text-center border border-secondary rounded-2 pt-5">
+            E-mail logado: {{ useUserStore.userInfo.email }}
         </div>
     </main>
 </template>
