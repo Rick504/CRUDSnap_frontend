@@ -9,6 +9,7 @@ const router = createRouter({
       name: 'home',
       component: HomeView,
       meta: {
+        auth: false,
         public: false,
       },
     },
@@ -21,13 +22,6 @@ const router = createRouter({
       },
     },
   ],
-});
-
-//Verifica se o meta.public é true, caso não seja ele direciona para tela de login
-//PRECISA IMPLEMENTAR LOGIN COM BACKEND
-router.beforeEach((to, _, next) => {
-  if (!to.meta?.public) next({ path: '/login' });
-  else next();
 });
 
 export default router;
