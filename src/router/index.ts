@@ -21,6 +21,14 @@ const router = createRouter({
         public: true,
       },
     },
+    {
+      path: '/account',
+      name: 'account',
+      component: () => import('@/views/Account.vue'),
+      meta: {
+        public: false,
+      },
+    },
   ],
 });
 
